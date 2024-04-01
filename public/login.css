@@ -1,0 +1,95 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #252d4a;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 900;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.field {
+	border: 1px solid black;
+	width: 490px;
+	height: auto;
+	border-radius: 10px;
+	background-color: #252d4a;
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+	box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
+}
+.inline {
+	margin: 10px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #f3f4f6;
+}
+input {
+	width: 300px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: rgba(#f3f4f6, #f3f4f6, #f3f4f6, 0.7);
+	/* background-color: #a1a3a5; */
+	border: none;
+	outline: none;
+	text-align: center;
+	color: black;
+	font-size: 17px;
+}
+
+#submit {
+	width: 140px;
+	height: 30px;
+	outline: none;
+	border: none;
+	background-color: #18e91f;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#submit:hover {
+	background-color: #15961a;
+}
+
+#new-user-icon,
+#forget-password-icon {
+	width: 23px;
+	height: 23px;
+}
+
+.new-user-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+a {
+	color: rgb(13, 106, 229);
+	text-decoration: none;
+}
+footer {
+	background-color: #232f56;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/* testing */
+
+#icons {
+	color: rgb(240, 16, 5);
+	width: 30px;
+	height: 30px;
+}

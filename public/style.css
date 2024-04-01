@@ -1,0 +1,283 @@
+/* Reset CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f3f4f6;
+	min-height: 100vh;
+	position: relative;
+}
+
+/* Header */
+.navigation-bar {
+	background-color: #252d4a;
+	color: #fff;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+nav ul {
+	list-style-type: none;
+	margin-left: auto;
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+nav li a {
+	text-decoration: none;
+	color: rgb(120, 123, 187);
+}
+
+nav li a:hover {
+	text-decoration: underline;
+	color: rgb(140, 145, 233);
+}
+
+.profile-section {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	color: white;
+	font-size: 14px;
+}
+
+.profile-picture {
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	margin-right: 10px;
+}
+
+#logoutButton {
+	background-color: #d32f2f;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+#logoutButton:hover {
+	background-color: #b71c1c;
+}
+
+/* Sidebar */
+.side-bar {
+	background-color: #252d4a;
+	color: #fff;
+	width: 250px;
+	padding: 20px;
+	position: absolute;
+}
+
+#registered-classes {
+	margin-bottom: 20px;
+}
+
+#module-field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 10px;
+	width: 90%;
+}
+
+#module {
+	background-color: #4caf50;
+	border: none;
+	color: #fff;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+#module:hover {
+	background-color: #45a049;
+}
+
+#addModuleForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#addModuleForm label {
+	margin-bottom: 10px;
+}
+
+#addModuleForm input[type="text"] {
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+#addModuleForm button[type="submit"] {
+	background-color: #4caf50;
+	border: none;
+	color: #fff;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 30%;
+	cursor: pointer;
+	margin-bottom: 8px;
+	box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.7);
+}
+#addModuleForm button[type="button"] {
+	background-color: #d82501;
+	padding: 6px;
+	color: #fff;
+	border: none;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+#addModuleForm button[type="submit"]:hover {
+	background-color: #45a049;
+}
+
+/* Content */
+.main {
+	display: flex;
+}
+
+main {
+	margin-left: 20%;
+	margin-top: 20px;
+}
+
+.content {
+	flex: 1;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+}
+
+h2#course {
+	margin-bottom: 20px;
+	margin-left: 45%;
+}
+
+section {
+	background-color: #fff;
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 100%;
+}
+
+#section-div {
+	display: flex;
+	flex-direction: row;
+}
+
+#section1,
+#section2 {
+	height: 300px; /* Adjust as needed */
+	margin: 15px;
+}
+
+#section3 {
+	height: 200px; /* Adjust as needed */
+	width: 60%;
+	margin-left: 2.5%;
+}
+
+#section-content {
+	display: flex;
+	flex-direction: row;
+}
+
+.section-icon {
+	width: 100px;
+	height: 100px;
+	margin-bottom: 20px;
+}
+
+.inner-sections {
+	max-height: 200px;
+	overflow-y: auto;
+	margin-left: 40px;
+	width: 100%;
+}
+
+.inner-sections ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.inner-sections ul li {
+	background-color: #f3f4f6;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 80%;
+}
+
+.question {
+	background-color: #f3f4f6;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	font-weight: 500;
+}
+
+.participant-message {
+	background-color: #f3f4f6;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	font-weight: 300;
+}
+
+/* Upload Section */
+.upload {
+	margin-left: auto;
+	padding: 20px;
+}
+
+#upload-field {
+	width: 5%;
+	padding: 30px;
+}
+
+#submitFile {
+	align-items: center;
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 60%;
+	margin-top: 10px;
+}
+
+#submitFile:hover {
+	background-color: #0056b3;
+}
+
+footer {
+	background-color: #252d4a;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}

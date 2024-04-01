@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script defer src="script.js"></script>
+		<script
+			src="https://kit.fontawesome.com/77487f3db9.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<header class="navigation-bar">
+			<img src="./icons/tech_logo.jpeg" alt="Tech Logo" class="logo" />
+			<nav>
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="./about.html">About</a></li>
+				</ul>
+			</nav>
+			<div class="profile-section">
+				<img
+					src="./icons/user-2.png"
+					alt="Profile Picture"
+					class="profile-picture"
+				/>
+				<div id="username">John Doe</div>
+				<button id="logoutButton">Sign Out</button>
+			</div>
+		</header>
+
+		<aside class="side-bar">
+			<h4>Active Classes</h4>
+			<div id="registered-classes"></div>
+			<button id="module">Add Module</button>
+			<form
+				action="add-module"
+				method="post"
+				id="addModuleForm"
+				style="display: none"
+			>
+				<fieldset id="module-field">
+					<button
+						type="button"
+						id="quitButton"
+						onclick="toggleFormVisibility()"
+					>
+						Close
+					</button>
+					<label for="module_code">Module Code:</label>
+					<input type="text" id="moduleCode" name="module_code" required />
+					<label for="module_name">Module Name:</label>
+					<input type="text" id="moduleName" name="module_name" required />
+					<button type="submit" onclick="toggleFormVisibility()">Add</button>
+				</fieldset>
+			</form>
+		</aside>
+
+		<main>
+			<h2 id="course">Class Name</h2>
+			<div class="content">
+				<section id="section1">
+					<div id="section-div">
+						<div>
+							<img
+								src="./icons/team.png"
+								alt="Team Picture"
+								class="section-icon"
+							/>
+							<h3>Participants</h3>
+						</div>
+						<div class="inner-sections">
+							<ul></ul>
+						</div>
+					</div>
+				</section>
+
+				<section id="section2">
+					<div id="section-div">
+						<div>
+							<img src="./icons/live-chat.png" alt="" class="section-icon" />
+							<h3>Chats</h3>
+						</div>
+						<div class="inner-sections chat"></div>
+					</div>
+				</section>
+			</div>
+
+			<div id="section-content">
+				<section id="section3">
+					<div id="section-div">
+						<div>
+							<img src="./icons/credit-score.png" alt="" class="section-icon" />
+							<h3>Participants Score</h3>
+						</div>
+						<div class="inner-sections">
+							<ol></ol>
+						</div>
+					</div>
+				</section>
+				<div class="upload">
+					<h3>&nbsp;&nbsp; Upload Chat Dialog Here</h3>
+					<form
+						action="/upload"
+						method="post"
+						enctype="multipart/form-data"
+						id="fileUploadForm"
+					>
+						<fieldset id="upload-field">
+							<input type="file" name="file" id="fileInput" />
+							<button type="submit" id="submitFile">Upload</button>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>
+				&copy; 2024 Jovaughn Rose and Sutania Thomas University of Technology
+				Students. All rights reserved.
+			</p>
+		</footer>
+	</body>
+</html>

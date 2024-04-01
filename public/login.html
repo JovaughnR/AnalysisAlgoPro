@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login Page</title>
+		<link rel="stylesheet" href="./login.css" />
+		<script
+			src="https://kit.fontawesome.com/77487f3db9.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<form action="/login" method="POST" id="user-login">
+			<fieldset class="field">
+				<legend>
+					<i class="fa-solid fa-user" id="icons"></i>
+				</legend>
+				<div>
+					<label for="user_id">Identification Number</label>
+					<i class="fa-solid fa-id-card" id="icons"></i>
+					<input type="text" name="user_id" id="user-id" required />
+				</div>
+				<div class="inline">
+					<label for="password">Password</label>
+					<i class="fa-solid fa-lock" id="icons"></i>
+					<input type="password" name="password" id="password" required />
+				</div>
+				<div
+					id="error-message"
+					style="
+						color: rgba(255, 0, 0, 0.751);
+						display: none;
+						font-size: 12px;
+						margin-bottom: 10px;
+					"
+				>
+					Incorrect Identification Number and/or Password.
+				</div>
+				<button type="submit" id="submit">Login</button>
+
+				<div class="inline new-user-group">
+					<div>
+						<i class="fa-solid fa-person-circle-plus" id="icons"></i>
+						<a href="./form.html">New User</a>
+					</div>
+					<div>
+						<i class="fa-solid fa-unlock" id="icons"></i>
+						<a href="">Forget Password</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<footer>
+			<p>
+				&copy; 2024 Jovaughn Rose and Sutania Thomas University of Technology
+				Students. All rights reserved.
+			</p>
+		</footer>
+		<script>
+			document
+				.getElementById("user-login")
+				.addEventListener("submit", async (event) => {
+					event.preventDefault();
+					const formData = new FormData(event.target);
+
+					const credentials = {
+						user_id: formData.get("user_id"),
+						password: formData.get("password"),
+					};
+
+					try {
+						const response = await fetch("/login", {
+							method: "POST",
+							body: JSON.stringify(credentials),
+							headers: { "Content-Type": "application/json" },
+						});
+						if (response.status === 401) {
+							console.log("Error");
+							document.getElementById("error-message").style.display = "block";
+						} else {
+							window.location.href = "/";
+						}
+					} catch (error) {
+						console.error("Error during login:", error);
+					}
+				});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sign up form</title>
+		<link rel="stylesheet" href="./form.css" />
+	</head>
+	<body>
+		<form action="/submit" method="POST" id="uploadForm">
+			<fieldset class="field">
+				<legend>
+					<img src="./icons/writing.png" alt="sign-up-icon" id="sign-up-icon" />
+				</legend>
+				<div class="input-group">
+					<div class="inline">
+						<label for="first_name">First Name</label>
+						<input type="text" name="first_name" id="first-name" required />
+					</div>
+					<div class="inline">
+						<label for="last_name">Last Name</label>
+						<input type="text" name="last_name" id="last-name" required />
+					</div>
+				</div>
+
+				<div class="input-group">
+					<div class="inline">
+						<label for="user_id">Identification Number</label>
+						<input type="text" name="user_id" id="user-id" required />
+					</div>
+					<div class="inline">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" required />
+					</div>
+				</div>
+
+				<div class="input-group">
+					<div class="inline">
+						<label for="module_code">Module Code</label>
+						<input type="text" id="moduleCode" name="module_code" required />
+					</div>
+					<div class="inline">
+						<label for="module_name">Module Name</label>
+						<input type="text" id="moduleName" name="module_name" required />
+					</div>
+				</div>
+
+				<div class="input-group">
+					<div class="inline">
+						<label for="password">Password</label>
+						<input type="password" name="password" id="password" required />
+					</div>
+					<div class="inline">
+						<label for="confirm_password">Confirm Password</label>
+						<input
+							type="password"
+							name="confirm_password"
+							id="confirm-password"
+							required
+						/>
+					</div>
+				</div>
+				<button type="submit" id="submitBtn">Create Account</button>
+			</fieldset>
+		</form>
+		<footer>
+			<p>
+				&copy; 2024 Jovaughn Rose and Sutania Thomas University of Technology
+				Students. All rights reserved.
+			</p>
+		</footer>
+		<script>
+			document
+				.getElementById("uploadForm")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
+
+					const password = document.getElementById("password").value;
+					const confirmPassword =
+						document.getElementById("confirm-password").value;
+
+					if (password !== confirmPassword) {
+						const passwordInput = document.getElementById("password");
+						const confirmPasswordInput =
+							document.getElementById("confirm-password");
+
+						passwordInput.style.border = "1px solid red";
+						confirmPasswordInput.style.border = "1px solid red";
+						const button = document.getElementById("submit");
+					}
+					if (password === confirmPassword) {
+						document.getElementById("uploadForm").submit();
+					}
+				});
+		</script>
+	</body>
+</html>

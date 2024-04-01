@@ -1,0 +1,106 @@
+* {
+	padding: none;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+legend {
+	text-align: center;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+legend > #sign-up-icon {
+	width: 40px;
+	height: 30px;
+}
+body {
+	color: #f3f4f6;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 900;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.field {
+	width: 600px;
+	height: auto;
+	border: 1px black solid;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+}
+
+.input-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.inline {
+	margin: 10px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button[type="submit"] {
+	width: 200px;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+	outline: none;
+	background-color: rgba(255, 255, 255, 0.2);
+	outline: none;
+	border: none;
+	font-size: 15px;
+	color: black;
+	text-align: center;
+}
+
+button[type="submit"] {
+	background-color: #12e319;
+	color: white;
+	cursor: pointer;
+	outline: none;
+	border: none;
+}
+
+button[type="submit"]:hover {
+	background-color: #1a9b1e;
+}
+
+.error-message {
+	color: rgb(254, 47, 0);
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+footer {
+	background-color: #232f56;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/* testing */
+
+#icons {
+	background-color: #252d4a;
+	width: 30px;
+	height: 30px;
+}
