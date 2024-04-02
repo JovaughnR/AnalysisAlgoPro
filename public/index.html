@@ -110,6 +110,17 @@
 					>
 						<fieldset id="upload-field">
 							<input type="file" name="file" id="fileInput" />
+							<div
+								id="error-message"
+								style="
+									color: rgba(255, 0, 0, 0.751);
+									display: none;
+									font-size: 11px;
+									margin-bottom: 10px;
+								"
+							>
+								Only text files (.txt) and PDF files (.pdf) are allowed.
+							</div>
 							<button type="submit" id="submitFile">Upload</button>
 						</fieldset>
 					</form>

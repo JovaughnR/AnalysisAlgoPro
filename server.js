@@ -29,8 +29,26 @@ const storage = multer.diskStorage({
 	},
 });
 
+// File type validation function
+const fileFilter = function (req, file, cb) {
+	const allowedTypes = ["text/plain", "application/pdf"]; // Allowed file MIME types
+	if (allowedTypes.includes(file.mimetype)) {
+		cb(null, true); // Accept the file
+	} else {
+		cb(
+			new Error(
+				"Invalid file type. Only text files (.txt) and PDF files (.pdf) are allowed."
+			)
+		);
+	}
+};
+
+// Multer configuration
 // Initialize Multer with the storage configuration
-const upload = multer({ storage: storage });
+const upload = multer({
+	storage: storage,
+	fileFilter: fileFilter, // Apply file type validation
+});
 
 app.get("/register", (req, res) => {
 	if (!isAuthorise) {

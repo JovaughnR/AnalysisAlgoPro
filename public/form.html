@@ -7,6 +7,14 @@
 		<link rel="stylesheet" href="./form.css" />
 	</head>
 	<body>
+		<header class="navigation-bar">
+			<img src="./icons/tech_logo.jpeg" alt="Tech Logo" class="logo" />
+			<nav>
+				<ul>
+					<li><a href="./login.html">Home</a></li>
+				</ul>
+			</nav>
+		</header>
 		<form action="/submit" method="POST" id="uploadForm">
 			<fieldset class="field">
 				<legend>
@@ -60,6 +68,17 @@
 						/>
 					</div>
 				</div>
+				<div
+					id="error-message"
+					style="
+						color: #000;
+						display: none;
+						font-size: 10px;
+						margin-bottom: 10px;
+					"
+				>
+					passwords don't match.
+				</div>
 				<button type="submit" id="submitBtn">Create Account</button>
 			</fieldset>
 		</form>
@@ -83,6 +102,7 @@
 						const passwordInput = document.getElementById("password");
 						const confirmPasswordInput =
 							document.getElementById("confirm-password");
+						document.getElementById("error-message").style.display = "block";
 
 						passwordInput.style.border = "1px solid red";
 						confirmPasswordInput.style.border = "1px solid red";

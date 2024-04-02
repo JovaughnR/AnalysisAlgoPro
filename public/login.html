@@ -10,7 +10,16 @@
 			crossorigin="anonymous"
 		></script>
 	</head>
-	<body>
+	<body >
+		<header class="navigation-bar">
+			<img src="./icons/tech_logo.jpeg" alt="Tech Logo" class="logo" />
+			<nav>
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="./about.html">About</a></li>
+				</ul>
+			</nav>
+		</header>
 		<form action="/login" method="POST" id="user-login">
 			<fieldset class="field">
 				<legend>
@@ -29,13 +38,13 @@
 				<div
 					id="error-message"
 					style="
-						color: rgba(255, 0, 0, 0.751);
+						color: rgb(255, 0, 0);
 						display: none;
 						font-size: 12px;
 						margin-bottom: 10px;
 					"
 				>
-					Incorrect Identification Number and/or Password.
+					&nbsp;Incorrect Identification Number or Password.
 				</div>
 				<button type="submit" id="submit">Login</button>
 

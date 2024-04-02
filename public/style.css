@@ -1,4 +1,4 @@
-/* Reset CSS */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -123,6 +123,7 @@ nav li a:hover {
 	margin-bottom: 10px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
+	text-align: center;
 }
 
 #addModuleForm button[type="submit"] {
@@ -144,6 +145,11 @@ nav li a:hover {
 	border: none;
 	margin-top: 5px;
 	cursor: pointer;
+	border-radius: 5px;
+}
+
+#addModuleForm button[type="button"]:hover {
+	background-color: #a2260e;
 }
 
 #addModuleForm button[type="submit"]:hover {
@@ -188,12 +194,12 @@ section {
 
 #section1,
 #section2 {
-	height: 300px; /* Adjust as needed */
+	height: 300px; 
 	margin: 15px;
 }
 
 #section3 {
-	height: 200px; /* Adjust as needed */
+	height: 200px; 
 	width: 60%;
 	margin-left: 2.5%;
 }
@@ -281,3 +287,10 @@ footer {
 	bottom: 0;
 	width: 100%;
 }
+
+
+/* Connection string must be of the form "AccountEndpoint=.../AccountKey=...
+
+"AccountEndpoint=https://<your-account-name>.documents.azure.com:443/;AccountKey=<your-account-key>;"
+
+// Enter a Azure storage SAS URL (Press 'Enter' to confirm or 'Escape' to cancel)

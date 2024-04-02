@@ -168,10 +168,14 @@ async function fetchDialogs() {
 			body: new FormData(form),
 		});
 
+		const errorMessage = document.getElementById("error-message");
+
 		if (!response.ok) {
+			errorMessage.style.display = "block";
 			throw new Error(`HTTP error ${response.status}`);
 		}
 
+		errorMessage.style.display = "none";
 		form.reset();
 
 		const { chatDialogs } = await response.json();

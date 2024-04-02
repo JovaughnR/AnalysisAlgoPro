@@ -8,7 +8,6 @@ create table user (
     last_name varchar(20),
     email varchar(35),
 );
-insert into user values (111111, "john", "jones", "johnjones@gmail.com");
 
 ALTER TABLE user drop COLUMN title;
 
@@ -42,18 +41,23 @@ select * from module;
 
 
 update user 
-set first_name = "Dr. Arnett", 
+set first_name = "John ", 
 last_name = "Campbell" 
-where user_id = 2111876;
+where user_id = 2487519;
 
-delete from user_authentication where user_id = 2111876;
+delete from user_authentication where user_id = 2487519;
 
-delete from module where lecturer_id = 2111876;
+delete from module where lecturer_id = 2487519;
 
-delete from user where user_id = 2111876;
+delete from user where user_id = 2487519
+;
 
 delete from module;
 
 delete from user_authentication;
 
 delete from user;
+
+-- Strong pass
+-- robmAf-nopzi1-hekhap
+

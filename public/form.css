@@ -4,6 +4,39 @@
 	box-sizing: border-box;
 }
 
+.navigation-bar {
+	background-color: #252d4a;
+	color: #fff;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+nav ul {
+	list-style-type: none;
+	margin-left: auto;
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+nav li a {
+	text-decoration: none;
+	color: rgb(120, 123, 187);
+}
+
+nav li a:hover {
+	text-decoration: underline;
+	color: rgb(140, 145, 233);
+}
+
 legend {
 	text-align: center;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -14,26 +47,29 @@ legend > #sign-up-icon {
 	height: 30px;
 }
 body {
-	color: #f3f4f6;
-	height: 100vh;
-	display: flex;
+	min-height: 100vh;
+	position: relative;
+	background-color: #f3f4f6;
+	/* display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: center; */
 	font-weight: 900;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .field {
+	margin: auto;
 	width: 600px;
 	height: auto;
 	border: 1px black solid;
 	border-radius: 10px;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(47, 69, 134, 0.835);
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	align-items: center;
 	text-align: center;
 	padding: 20px;
+	margin-top: 10%;
 }
 
 .input-group {
