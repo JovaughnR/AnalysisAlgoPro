@@ -22,7 +22,15 @@ steps:
     WebAppName: 
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|18-lts'
-
+- task: AzureMysqlDeployment@1
+  inputs:
+    azureSubscription: 'Azure for Students(1)(c8740be3-121b-4632-bc57-65b452d42e37)'
+    ServerName: 'analysisofalgorithm.database.windows.net'
+    DatabaseName: 'a_of_a_student_participation'
+    SqlUsername: 'jovaughnR'
+    SqlPassword: 'robmAf-nopzi1-hekhap'
+    TaskNameSelector: 'SqlTaskFile'
+    IpDetectionMethod: 'AutoDetect'
 - script: |
     npm install
     grunt --gruntfile Gruntfile.js
