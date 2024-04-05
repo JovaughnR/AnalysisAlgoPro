@@ -61,3 +61,5 @@ delete from user;
 -- Strong pass
 -- robmAf-nopzi1-hekhap
 
+Server=tcp:analysisofalgorithm.database.windows.net,1433;Initial Catalog=a_of_a_student_participation;Persist Security Info=False;User ID=jovaughnR;Password=robmAf-nopzi1-hekhap;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+

@@ -175,7 +175,7 @@ main {
 
 h2#course {
 	margin-bottom: 20px;
-	margin-left: 45%;
+	margin-left: 38%;
 }
 
 section {
@@ -289,7 +289,8 @@ footer {
 }
 
 
-/* Connection string must be of the form "AccountEndpoint=.../AccountKey=...
+/* Server=tcp:analysisofalgorithm.database.windows.net,1433;Initial Catalog=a_of_a_student_participation;Persist Security Info=False;User ID=jovaughnR;Password=buzz@don39;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+Connection string must be of the form "AccountEndpoint=.../AccountKey=...
 
 "AccountEndpoint=https://<your-account-name>.documents.azure.com:443/;AccountKey=<your-account-key>;"
 

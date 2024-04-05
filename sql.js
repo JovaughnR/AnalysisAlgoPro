@@ -11,7 +11,90 @@ class Database {
 		});
 
 		this.connection.connect(function (error) {
-			error ? console.error(error) : console.log({ "Database Status": 200 });
+			error ? console.error(error) : console.log("Database connected");
+		});
+	}
+
+	initializeDatabase(callback) {
+		try {
+			this.createDatabase();
+			this.createUserTable();
+			this.createAuthenticationTable();
+			this.createModuleTable();
+			this.createSessionDialogTable();
+		} catch (error) {
+			callback(err, true);
+		}
+		callback(null, false);
+	}
+
+	createDatabase() {
+		const db = "a_of_a_student_participation";
+		const sql = "create database if not exists " + db;
+		this.connection.query(sql, (err, result) => {
+			err
+				? console.log("Error creating database:", err)
+				: console.log("Database created...");
+		});
+	}
+
+	createUserTable() {
+		const sql = `CREATE TABLE IF NOT EXISTS user (
+        user_id BIGINT PRIMARY KEY,
+        first_name VARCHAR(20),
+        last_name VARCHAR(20),
+        email VARCHAR(35)
+    )`;
+		this.connection.query(sql, (err, result) => {
+			err
+				? console.log("Error creating table!")
+				: console.log("user table created...");
+		});
+	}
+
+	createAuthenticationTable() {
+		const sql = `CREATE TABLE IF NOT EXISTS user_authentication (
+			user_id BIGINT PRIMARY KEY,
+			user_password varchar(65), 
+			Foreign Key (user_id) References user(user_id)
+		)`;
+
+		this.connection.query(sql, (err, result) => {
+			err
+				? console.log("Error creating table!")
+				: console.log("Authentication table created...");
+		});
+	}
+
+	createModuleTable() {
+		const sql = `CREATE TABLE IF NOT EXISTS module (
+			module_code VARCHAR(10) PRIMARY KEY,
+			module_name VARCHAR(35),
+			lecturer_id BIGINT, 
+			Foreign Key (lecturer_id) References user(user_id)
+		)`;
+
+		this.connection.query(sql, (err, result) => {
+			err
+				? console.log("Error creating table!")
+				: console.log("Module table created...");
+		});
+	}
+
+	createSessionDialogTable() {
+		const sql = `CREATE TABLE IF NOT EXISTS session_dialogs (
+  		module_code VARCHAR(10) PRIMARY KEY,
+			message VARCHAR(5000),
+			date DATE, 
+			lecturer_id BIGINT,
+			Foreign Key (lecturer_id) REFERENCES user(user_id),
+			Foreign Key (module_code) REFERENCES module(module_code)
+		)`;
+
+		this.connection.query(sql, (err, result) => {
+			err
+				? console.log("Error creating table!")
+				: console.log("Session Dialogs table created...");
 		});
 	}
 
@@ -60,6 +143,26 @@ class Database {
 		console.log("Module added sucessfully");
 	}
 
+	add_session_dialogs(moduleName, userId, sessiongDialog) {
+		this.get_module_code(moduleName, (err, code) => {
+			if (err) {
+				throw new Error("Session Dialogs couldn't be added");
+			} else {
+				const sql = "insert into session_dialogs values ?";
+				const date = new Date().toISOString.slice(0, 10);
+				const values = [code, sessiongDialog, date, userId];
+				this.connection.query(sql, [values]);
+			}
+		});
+	}
+
+	get_module_code(moduleName, callback) {
+		const sql = "select module_code from module where module_name = ?";
+		this.connection.query(sql, [moduleName], (err, row) =>
+			err ? callback(err, null) : callback(null, row[0].module_code)
+		);
+	}
+
 	get_modules(lecturer_id, callback) {
 		const sql = "SELECT * FROM module WHERE lecturer_id = ?";
 
@@ -103,8 +206,8 @@ class Database {
 				callback(null, false);
 				return;
 			}
-			const pass = rows[0].user_password;
 
+			const pass = rows[0].user_password;
 			bcrypt.compare(password, pass, (err, valid) => {
 				if (err) {
 					callback(err, null);
@@ -154,3 +257,8 @@ module.exports = Database;
 
 // db.show_users("module");
 // db.add_user(lecturer);
+
+// db.get_module_code("Analysis of Algorithm", (err, value) => {
+// 	if (err) console.error("Error:", err);
+// 	else console.log(value);
+// });

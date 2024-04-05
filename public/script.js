@@ -7,17 +7,19 @@ const moduleForm = document.querySelector("#addModuleForm");
 const registeredClasses = document.querySelector("#registered-classes");
 const logout = document.querySelector("#logoutButton");
 let username = (foundedUser = null);
+let isGenerating = false;
 
 (async () => {
 	try {
 		const response = await fetch("/module");
+		const course = document.querySelector("#course");
 
 		if (!response.ok) {
 			throw new Error(`HTTP error ${response.status}`);
 		}
 		const { modules } = await response.json();
 		const module = modules[0].module_name;
-		document.querySelector("#course").innerHTML = module;
+		course.innerHTML = module;
 
 		modules.forEach((module) => {
 			const li = createLi(module.module_name);
@@ -28,7 +30,7 @@ let username = (foundedUser = null);
 			.querySelectorAll("#registered-classes > li")
 			.forEach(function (module) {
 				module.addEventListener("click", (e) => {
-					document.querySelector("#course").innerHTML = module.textContent;
+					course.innerHTML = module.textContent;
 				});
 			});
 	} catch (error) {
@@ -46,13 +48,14 @@ let username = (foundedUser = null);
 		document.querySelector("#username").innerHTML = name;
 		username = name;
 	} catch (error) {
-		console.log("Error retrieving name");
+		console.log(error);
 	}
 })();
 
 logout.addEventListener("click", async (e) => {
 	try {
-		await fetch("/logout");
+		const res = await fetch("/logout");
+
 		window.location.href = "/login";
 	} catch (error) {
 		console.log("Logout failed:", error);
@@ -127,6 +130,7 @@ fileUploadForm.addEventListener("submit", async (e) => {
 			});
 		});
 
+		// set a pointer to the second index of message array
 		for (let mp = 1; mp < max; mp++)
 			participants.forEach((participant) => {
 				const message = sessionInfo[participant].message[mp];
@@ -168,14 +172,14 @@ async function fetchDialogs() {
 			body: new FormData(form),
 		});
 
-		const errorMessage = document.getElementById("error-message");
+		const errorMsg = document.getElementById("error-message");
 
 		if (!response.ok) {
-			errorMessage.style.display = "block";
+			errorMsg.style.display = "block";
 			throw new Error(`HTTP error ${response.status}`);
 		}
 
-		errorMessage.style.display = "none";
+		errorMsg.style.display = "none";
 		form.reset();
 
 		const { chatDialogs } = await response.json();
@@ -193,35 +197,23 @@ async function fetchDialogs() {
  */
 function getDialogs(dialog) {
 	const chatInfo = {};
-	const pattern = /Everyone:(.*?)(?=\d{2}:\d{2}:\d{2})/;
-	const namePattern = /From (.*?)(?= To)/;
+	const pattern = /^(?<time>\d{2}:\d{2}:\d{2}) From (?<name>.*?) To/;
+	const responsePattern = /Everyone:(.*?)(?=\d{2}:\d{2}:\d{2})/g;
 
-	while (true) {
-		const time = dialog.slice(0, 8);
-		const response = dialog.match(pattern);
-		const name = dialog.match(namePattern);
+	let match;
+	while ((match = responsePattern.exec(dialog)) !== null) {
+		const { time, name } = match.groups;
+		const response = match[1].trim();
 
-		// terminate the the loop once there is no response or name
-		if (name === null || response === null) {
-			break;
+		if (!chatInfo[name]) {
+			chatInfo[name] = { time, message: [response] };
+		} else {
+			chatInfo[name].message.push(response);
 		}
-
-		if (chatInfo[name[1]] === undefined)
-			chatInfo[name[1]] = {
-				time: time,
-				message: [response[1]],
-			};
-		else {
-			chatInfo[name[1]].message.push(response[1]);
-		}
-
-		dialog = dialog.slice(
-			time.length + response[0].length + name[1].length + 10
-		);
 	}
+
 	return chatInfo;
 }
-
 function getParticipants(chatInfo) {
 	const participants = Object.keys(chatInfo);
 
@@ -251,28 +243,33 @@ function generateInnerContent(
 	messages,
 	userMessages
 ) {
-	const message = messages.join(" ");
-	const userMessage = userMessages.join(" ");
-	const words = ["was awarded", "acquired", "gained", "obtained"];
-	const headers = [
-		"In answer to the query",
-		"Regarding the inquiry",
-		"With response to the question",
-		"In reaction to the question.",
-	];
-	element.innerHTML = "";
-	const sentence = `${headers[rand]} ${userMessage} ${name} responded with "${message}" and ${words[rand]} ${score} percent for participation.`;
-	let index = 0;
-	const intervalId = setInterval(function () {
-		// Check if all characters have been displayed
-		if (index < sentence.length) {
-			element.innerHTML += sentence[index];
-			index++;
-		} else {
-			// Clear the interval when all characters have been displayed
-			clearInterval(intervalId);
-		}
-	}, 20);
+	console.log("Generating:", isGenerating);
+	if (!isGenerating) {
+		const message = messages.join(" ");
+		const userMessage = userMessages.join(" ");
+		const words = ["was awarded", "acquired", "gained", "obtained"];
+		const headers = [
+			"In answer to the query",
+			"Regarding the inquiry",
+			"With response to the question",
+			"In reaction to the question.",
+		];
+		isGenerating = true;
+		element.innerHTML = "";
+		const sentence = `${headers[rand]} ${userMessage} ${name} responded with "${message}" and ${words[rand]} ${score} percent for participation.`;
+		let index = 0;
+		const intervalId = setInterval(function () {
+			// Check if all characters have been displayed
+			if (index < sentence.length) {
+				element.innerHTML += sentence[index];
+				index++;
+			} else {
+				// Clear the interval when all characters have been displayed
+				clearInterval(intervalId);
+				isGenerating = false;
+			}
+		}, 20);
+	}
 }
 
 function isUsernameMatch(name) {

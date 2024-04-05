@@ -5,12 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login Page</title>
 		<link rel="stylesheet" href="./login.css" />
+		<link rel="icon" href="./icons/logo.jpeg" type="image/x-icon" />
+		<link rel="shortcut icon" href="./icons/logo.jpeg" type="image/x-icon" />
 		<script
 			src="https://kit.fontawesome.com/77487f3db9.js"
 			crossorigin="anonymous"
 		></script>
 	</head>
-	<body >
+	<body>
 		<header class="navigation-bar">
 			<img src="./icons/tech_logo.jpeg" alt="Tech Logo" class="logo" />
 			<nav>
@@ -85,7 +87,6 @@
 							headers: { "Content-Type": "application/json" },
 						});
 						if (response.status === 401) {
-							console.log("Error");
 							document.getElementById("error-message").style.display = "block";
 						} else {
 							window.location.href = "/";

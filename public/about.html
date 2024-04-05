@@ -4,6 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>About</title>
+		<link rel="stylesheet" href="./login.css" />
+		<link rel="icon" href="./icons/logo.jpeg" type="image/x-icon" />
+		<link rel="shortcut icon" href="./icons/logo.jpeg" type="image/x-icon" />
+		<script
+			src="https://kit.fontawesome.com/77487f3db9.js"
+			crossorigin="anonymous"
+		></script>
 		<style>
 			body {
 				font-family: Arial, sans-serif;
@@ -23,14 +30,31 @@
 				margin-bottom: 2rem;
 			}
 
+			.fa-house {
+				position: absolute;
+				cursor: pointer;
+				left: 4.5rem;
+				top: 35px;
+			}
+
+			.fa-house:hover {
+				color: blue;
+				transition: 0.2s;
+			}
+
 			h1 {
 				margin: 0;
 			}
 
 			section {
 				background-color: #fff;
-				padding: 1.5rem;
+				padding: 2.5rem 4.5rem 4.5rem 2.5rem;
+				/* padding-top: 2.5rem; */
+				/* padding-bottom: 4.5rem; */
+				/* padding-left: 4.5rem; */
+				/* padding: 4.5rem; */
 				margin-bottom: 1.5rem;
+				/* padding-right: 4.5rem; */
 				border-radius: 8px;
 				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 			}
@@ -39,6 +63,11 @@
 				margin-top: 0;
 			}
 
+			#algo {
+				height: 400px;
+				width: 400px;
+				margin-left: 25%;
+			}
 			footer {
 				/* background-color: #333; */
 				background-color: #252d4a;
@@ -57,13 +86,15 @@
 	</head>
 	<body>
 		<header>
+			<i class="fa-solid fa-house"></i>
 			<h1>Session Dialog Parser</h1>
 		</header>
 
 		<section id="problem-category">
 			<h2>Problem Category</h2>
 			<p>
-				This problem belongs to the category of text processing and parsing.
+				This problem belongs to the category of searching, text processing and
+				parsing.
 			</p>
 		</section>
 
@@ -88,10 +119,14 @@
 		<section id="algorithmic-design">
 			<h2>Algorithmic Design</h2>
 			<p>
-				The algorithm first defines patterns using regular expressions to
-				extract sender names and messages along with their timestamps from the
-				dialog string. It then iteratively parses the dialog string, extracting
-				sender names, messages, and timestamps until there are no more matches.
+				The approach is a decrease and conquer approach the algorithm first
+				defines patterns using regular expressions to extract sender names and
+				messages along with their timestamps from the dialog string those
+				attribues were then stored in an hash table .It then iteratively parses
+				the dialog string, extracting sender names, messages, and timestamps
+				until there are no more matches.
+
+				<img src="./icons/scriptdemo.png" alt="" id="algo" />
 			</p>
 		</section>
 
@@ -141,5 +176,15 @@
 				Students. All rights reserved..
 			</p>
 		</footer>
+		<script>
+			document
+				.querySelector(".fa-house")
+				.addEventListener("click", async (e) => {
+					const response = await fetch("/");
+					if (response.ok) {
+						window.location.href = response.url;
+					}
+				});
+		</script>
 	</body>
 </html>
