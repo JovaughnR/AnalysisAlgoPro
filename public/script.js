@@ -55,7 +55,6 @@ let isGenerating = false;
 logout.addEventListener("click", async (e) => {
 	try {
 		const res = await fetch("/logout");
-
 		window.location.href = "/login";
 	} catch (error) {
 		console.log("Logout failed:", error);
@@ -197,23 +196,35 @@ async function fetchDialogs() {
  */
 function getDialogs(dialog) {
 	const chatInfo = {};
-	const pattern = /^(?<time>\d{2}:\d{2}:\d{2}) From (?<name>.*?) To/;
-	const responsePattern = /Everyone:(.*?)(?=\d{2}:\d{2}:\d{2})/g;
+	const pattern = /Everyone:(.*?)(?=\d{2}:\d{2}:\d{2})/;
+	const namePattern = /From (.*?)(?= To)/;
 
-	let match;
-	while ((match = responsePattern.exec(dialog)) !== null) {
-		const { time, name } = match.groups;
-		const response = match[1].trim();
+	while (true) {
+		const time = dialog.slice(0, 8);
+		const response = dialog.match(pattern);
+		const name = dialog.match(namePattern);
 
-		if (!chatInfo[name]) {
-			chatInfo[name] = { time, message: [response] };
-		} else {
-			chatInfo[name].message.push(response);
+		// terminate the the loop once there is no response or name
+		if (name === null || response === null) {
+			break;
 		}
-	}
 
+		if (chatInfo[name[1]] === undefined)
+			chatInfo[name[1]] = {
+				time: time,
+				message: [response[1]],
+			};
+		else {
+			chatInfo[name[1]].message.push(response[1]);
+		}
+
+		dialog = dialog.slice(
+			time.length + response[0].length + name[1].length + 10
+		);
+	}
 	return chatInfo;
 }
+
 function getParticipants(chatInfo) {
 	const participants = Object.keys(chatInfo);
 
